@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         tier: frontend
-        app.kubernetes.io/name: pbl-proj1
     spec:
       containers:
       - name: nginx
@@ -30,7 +29,6 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app.kubernetes.io/name: pbl-proj1
     tier: frontend
   ports:
     - protocol: TCP

@@ -2,48 +2,7 @@
 
 In this project, we will begin to deploy applications on a K8s cluster. Kubernetes has a lot of moving parts; it operates with several layers of abstraction between your application and host machines where it runs.
 
-## In this project we are going to learn and see in action the following;
-
-1. Deployment of software applications using [YAML](https://en.wikipedia.org/wiki/YAML) manifest files with following K8s objects:
-
-- Pods
-- ReplicaSets
-- Deployments
-- StatefulSets
-- Services (ClusterIP, NodeIP, Loadbalancer)
-- Configmaps
-- Volumes
-- PersistentVolumes
-- PersistentVolumeClaims
-
-...and many more
-
-2. Difference between **stateful** and **stateless** applications
-
-- Deploy MySQL as a StatefulSet and explain why
-
-3. Limitations of using manifests directly to deploy on K8s
-
-- Working with [Helm](https://helm.sh) templates, its components and the most important parts - semantic versioning
-- Converting all the `.yaml` templates into a helm chart
-
-4. Deploying more tools with Helm charts on AWS Elastic [Kubernetes Service (EKS)](https://aws.amazon.com/eks/)
-
-- Jenkins
--MySQL
--Ingress Controllers (Nginx)
-- Cert-Manager
-  - Ingress for Jenkins
-  - Ingress for the actual application
-
-5. Deploy Monitoring Tools
-
-- Prometheus
-- Grafana
-
-6. Hybrid CI/CD by combining different tools such as: [Gitlab CICD](https://docs.gitlab.com/ee/ci/), Jenkins. And, we will also touch on the concepts around [GitOps](https://www.weave.works/technologies/gitops/) using [Weaveworks Flux](https://www.weave.works/oss/flux/).
-
-### Choosing the right Kubernetes cluster set up
+## Choosing the right Kubernetes cluster set up
 
 When it comes to using a Kubernetes cluster, there is a number of options available depending on the ultimate use of it. For example, if you just need a cluster for development or learning, you can use lightweight tools like [Minikube](https://minikube.sigs.kubernetes.io/docs/start/), or [k3s](https://k3s.io/). These tools can run on your workstation without heavy system requirements. Obviously, there is limit to the amount of workload you can deploy there for testing purposes, but it works exactly like any other Kubernetes cluster.
 
@@ -68,7 +27,7 @@ Some setup options can combine both public and private cloud together. For examp
 
 ![Arch](./Images/Img1.png)
 
-## Deploying the Tooling app using Kubernetes objects
+## Deploying app using Kubernetes objects
 
 In this section, you will begin to write configuration files for Kubernetes objects (they are usually referred as `manifests`) in the form of files with `yaml` syntax and deploy them using `kubectl` console. But first, let us understand what a Kubernetes object is.
 
@@ -131,10 +90,9 @@ Create an eks cluster with the command below
 eksctl create cluster \
 --name pbl-proj1
 --region eu-central-1
---version 1.27 \
---nodegroup-name pbl-worker-nodes \
---node-type t2.micro \
---nodes 3
+--nodegroup-name worker-nodes \
+--node-type m5.large \
+--nodes 2
 ```
 
 or
@@ -159,6 +117,8 @@ Output
 
 ![imgae2b](./Images/img-kube1.png)
 
+![image2c](./Images/image7b.png)
+
 Run
 
 `aws eks update-kubeconfig --name pbl-proj1 --region eu-central-1`
@@ -167,12 +127,7 @@ This updates the kubeconfig file, typically located at ~/.kube/config by default
 
 `eksctl get cluster`
 
-**Output**
-
-```
-NAME            REGION          EKSCTL CREATED
-pbl-proj1       eu-central-1    True
-```
+![image-aaa](./Images/image-aaa.png)
 
 Let's proceed
 
@@ -1101,7 +1056,7 @@ apt-get install vim
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome to DAREY.IO!</title>
+<title>Welcome to MAYORFAJ.IO!</title>
 <style>
     body {
         width: 35em;
@@ -1111,22 +1066,22 @@ apt-get install vim
 </style>
 </head>
 <body>
-<h1>Welcome to DAREY.IO!</h1>
-<p>I love experiencing Kubernetes</p>
+<h1>Welcome to MAYORFAJ.IO!</h1>
+<p>I am happy implementing Kubernetes</p>
 
 <p>Learning by doing is absolutely the best strategy at 
 <a href="https://darey.io/">www.darey.io</a>.<br/>
 for skills acquisition
-<a href="https://darey.io/">www.darey.io</a>.</p>
+<a href="https://darey.io/">www.mayorfaj.io</a>.</p>
 
-<p><em>Thank you for learning from DAREY.IO</em></p>
+<p><em>Thank you for learning from MAYORFAJ.IO</em></p>
 </body>
 </html>
 ```
 
 5. Check the browser - You should see this
 
-![image 5a](./Images/img5a.png)
+![image 5a](./Images/image7a.png)
 
 6. Now, delete the only running Pod so that a new one is automatically recreated.
 
@@ -1151,12 +1106,4 @@ kubectl delete deployment nginx-deployment
 eksctl delete cluster --name pbl-proj1 --region eu-central-1
 ```
 
-In the next projects, 
-
-- You will understand how persistence work in Kubernetes using Volumes.
-
-- You will use Terraform to create a Kubernetes EKS cluster in AWS, and begin to use some powerful features such as **PV**, **PVCs**, **ConfigMaps**. 
-
-- Experience Dynamic provisioning of volumes to make your Pods stateful, using Kubernetes Statefulset.
-
-[Link to Next Project]()
+[Link to Next Project](https://github.com/MayorFaj/Persisting-Data-in_kubernetes_P23.git)
