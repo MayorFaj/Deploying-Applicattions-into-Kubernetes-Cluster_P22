@@ -87,12 +87,7 @@ Run `aws configure` and provide neccesary credentials to access your aws account
 Create an eks cluster with the command below
 
 ```
-eksctl create cluster \
---name pbl-proj1
---region eu-central-1
---nodegroup-name worker-nodes \
---node-type m5.large \
---nodes 2
+eksctl create cluster --name rias-proj1 --region eu-central-1 --nodegroup-name rias-worker-nodes --node-type t3.medium --nodes 3
 ```
 
 or
